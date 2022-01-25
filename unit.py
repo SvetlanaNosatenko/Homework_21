@@ -4,9 +4,6 @@ class Unit:
         self.got_key = False  # наличие у юнита ключа для открытия двери в конце уровня
         self.coord = (x, y)  # координаты x, y
         self.escaped = False  # флаг, удалось ли сбежать из подземелья
-        # self.defense = defense
-        # self.x = 0
-        # self.y = 0
 
     def has_key(self) -> bool:
         return self.got_key
@@ -21,18 +18,12 @@ class Unit:
         # - _is_alive → bool — проверяет, есть ли еще у юнита положительное количество хит-поинтов.
         if self.hp <= 0:
             print("Game over")
-            return False
-        return True
-
-        # except KeyError:
-        #     raise "UnitDied"
+            return True
 
     def get_damage(self, damage):
-        # - get_damage — обрабатывает входящий урон с учетом текущего параметра защиты.
-        # Если юнит умирает после атаки, должно быть выброшено исключение UnitDied.
+        # обрабатывает входящий урон с учетом текущего параметра защиты.
         self.hp -= damage
         self.is_alive()
-
 
     def set_coordinates(self, x, y):
         self.coord = (x, y)

@@ -1,21 +1,15 @@
-from unit import Unit
-
-from terrain import Cell
-
-
 class Field:
     def __init__(self, field, unit, cols, rows):
-                 # rows: int, cols: int, field: list, unit: Unit):
-        self.field = field  # В этом массиве мы будем хранить положение наших объектов. Этот объект мы будем изменять во время игры
-        self.unit = unit  # unit: Unit — ссылка на наш Unit, размещенный на поле feld.
+        self.field = field  # В массиве хранится положение наших объектов
+        self.unit = unit  # unit — ссылка на Unit, размещенный на поле field.
         self.rows = rows  # строки поля
         self.cols = cols  # столбцы поля
-    def cell(self,x ,y):
-        return self.field[x][y]
 
-    def get_cell(self, x, y):  # метод, возвращающий объект находящийся по данным координатам
-        return self.unit.set_coordinates(x, y)
+    def cell(self, x, y):
+        return self.field[y][x]
 
+    # def get_cell(self, x, y):  # метод, возвращающий объект находящийся по данным координатам
+    #     return self.unit.set_coordinates(x, y)
 
     def unit_move(self, x, y):
         if self.cell(x, y).get_obj().get_terrain() == 'Key':
@@ -29,7 +23,7 @@ class Field:
         if self.cell(x, y).get_obj().is_walkable:
             self.unit.set_coordinates(x, y)
         else:
-            print('Нельзя перемещаться на эту ячейку')
+            print('Выбрать другой путь')
 
         if self.cell(x, y).get_obj().get_terrain() == 'Door':
             if self.cell(x, y).get_obj().step_on(self.unit):
